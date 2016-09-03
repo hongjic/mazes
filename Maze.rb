@@ -4,34 +4,34 @@ class Maze
 	attr_accessor :maze #[width = 2*@height_cell+1][height = 2*@width_cell+1]
 	attr_accessor :height_cell
 	attr_accessor :width_cell
+	attr_accessor :height
+	attr_accessor :width
 
 	def load arg, height, width
 		@height_cell = height
 		@width_cell = width
 		@maze = Array.new
-		height = 2*@height_cell+1
-		width = 2*@width_cell+1
-		height.times do |i|
+		@height = 2*@height_cell+1
+		@width = 2*@width_cell+1
+		@height.times do |i|
 			line = Array.new
-			width.times { |j| line.push(arg[i*width+j]) }
+			@width.times { |j| line.push(arg[i*@width+j]) }
 			@maze.push(line)
 		end
-		@maze_algo = MazeAlgo.new(@maze, height_cell, width_cell)
+		@maze_algo = MazeAlgo.new(@maze, @height_cell, @width_cell)
 	end
 
 	def display
-		height = @height_cell*2+1
-		width = @width_cell*2+1
 		# display the maze
 		str = ""
-		height.times do |i|
-			width.times do |j|
+		@height.times do |i|
+			@width.times do |j|
 				if @maze[i][j]=="1"
 					str+="+" if i.even? and j.even?
 					str+="-" if i.even? and j.odd?
 					str+="|" if i.odd?
-				else 
-					str+=" "
+				else
+					str += " "
 				end
 			end
 			str+="\n"
@@ -67,19 +67,17 @@ class Maze
 
 	def redesign
 		# automatically redesign a new maze
-		h = 2*@height_cell+1
-		w = 2*@width_cell+1
 		i = 1
-		while i<h-1
+		while i<@height-1
 			if i.odd?
 				j = 2
-				while j<w-1
+				while j<@width-1
 					@maze[i][j] = rand(2).to_s
 					j += 2
 				end
 			else
 				j = 1
-				while j<w-1
+				while j<@width-1
 					@maze[i][j] = rand(2).to_s
 					j += 2
 				end

@@ -39,10 +39,12 @@ class MazeAlgo
 
 	def bfs begX, begY, endX, endY, visited
 		visited[begX][begY] = true
-		list = Array.new # list is for saving the points(or cells) that has been already visited
-		last_cell = Array.new # last_cell[i] is for saving the index of the last cell on the path to list[i]
-		list.push([begX, begY]) # push the begin cell into the list
-		last_cell.push(-1) # push -1 into last_cell cuz there is not previous cell to the begin cell
+		# list is for saving the points(or cells) that has been already visited
+		# push the begin cell into the list
+		# last_cell[i] is for saving the index of the last cell on the path to list[i]
+		# push -1 into last_cell cuz there is not previous cell to the begin cell
+		list = [[begX, begY]] 
+		last_cell = [-1] 
 		head = 0
 		while head<list.size() 
 			break if list[head][0]==endX and list[head][1]==endY
@@ -71,9 +73,9 @@ class MazeAlgo
 
 	def visited_initialize
 		visited = Array.new
-		@h.times do |i|
+		@h.times do 
 			line = Array.new
-			@w.times { |j| line.push false}
+			@w.times { line.push false}
 			visited.push line
 		end
 		visited
