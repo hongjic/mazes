@@ -21,27 +21,29 @@ class Maze
 		@maze_algo = MazeAlgo.new(@maze, @height_cell, @width_cell)
 	end
 
+	def display_c i, j
+		if @maze[i][j] == "1"
+			return i.even? ? (j.even? ? "+" : "-") : "|"
+		end
+		" "
+	end
+
 	def display
 		# display the maze
 		str = ""
 		@height.times do |i|
-			@width.times do |j|
-				if @maze[i][j]=="1"
-					str+="+" if i.even? and j.even?
-					str+="-" if i.even? and j.odd?
-					str+="|" if i.odd?
-				else
-					str += " "
-				end
-			end
+			@width.times { |j| str += display_c(i, j) }
 			str+="\n"
 		end
 		str
 	end
 
 	def check_boundary begX, begY, endX, endY
-		if begX<0 || begX>@height_cell-1 || begY<0 || begY>@width_cell-1 || endX<0 || endX>@height_cell-1 || endY>@width_cell-1
-			return "Wrong Coordinator."
+		if begX<0 || begX>@height_cell-1 || begY<0 || begY>@width_cell-1
+			return "Wrong begin coordinator."
+		end
+		if endX<0 || endX>@height_cell-1 || endY<0 || endY>@width_cell-1
+			return "Wrong end coordinator."
 		end
 		true
 	end
@@ -66,6 +68,12 @@ class Maze
 
 	def redesign
 		# automatically redesign a new maze
+		create_walls
+		connet_walls
+		"New Maze has been formed."
+	end
+
+	def create_walls
 		i = 1
 		while i<@height-1
 			j = 1
@@ -76,8 +84,6 @@ class Maze
 			end
 			i += 1
 		end
-		connet_walls
-		"New Maze has been formed."
 	end
 
 	def connet_walls
