@@ -39,11 +39,8 @@ class Maze
 	end
 
 	def check_boundary begX, begY, endX, endY
-		if begX<0 || begX>@height_cell-1 || begY<0 || begY>@width_cell-1
-			return "Wrong begin coordinator."
-		end
-		if endX<0 || endX>@height_cell-1 || endY<0 || endY>@width_cell-1
-			return "Wrong end coordinator."
+		if begX<0 || begX>@height_cell-1 || begY<0 || begY>@width_cell-1 || endX<0 || endX>@height_cell-1 || endY<0 || endY>@width_cell-1
+			return "Wrong coordinator."
 		end
 		true
 	end

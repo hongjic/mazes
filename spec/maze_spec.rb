@@ -25,8 +25,8 @@ describe 'Maze' do
 	end
 
 	it "should check boundary correctly" do
-		expect(@maze.check_boundary(0,0,4,4)).to eq "Wrong end coordinator."
-		expect(@maze.check_boundary(-1,-1,3,3)).to eq "Wrong begin coordinator."
+		expect(@maze.check_boundary(0,0,4,4)).to eq "Wrong coordinator."
+		expect(@maze.check_boundary(-1,-1,3,3)).to eq "Wrong coordinator."
 		expect(@maze.check_boundary(0,0,3,3)).to be true
 	end
 
@@ -42,7 +42,7 @@ describe 'Maze' do
 
 	it "should solve correctly" do
 		expect(@maze.solve(0,0,3,3)).to be true
-		expect(@maze.solve(0,0,4,4)).to eq "Wrong end coordinator."
+		expect(@maze.solve(0,0,4,4)).to eq "Wrong coordinator."
 	end
 
 end
