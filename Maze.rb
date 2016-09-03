@@ -69,18 +69,11 @@ class Maze
 		# automatically redesign a new maze
 		i = 1
 		while i<@height-1
-			if i.odd?
-				j = 2
-				while j<@width-1
-					@maze[i][j] = rand(2).to_s
-					j += 2
-				end
-			else
-				j = 1
-				while j<@width-1
-					@maze[i][j] = rand(2).to_s
-					j += 2
-				end
+			j = 1
+			j = 2 if i.odd?
+			while j<@width-1
+				@maze[i][j] = rand(2).to_s
+				j += 2
 			end
 			i += 1
 		end
