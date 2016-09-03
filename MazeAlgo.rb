@@ -22,15 +22,19 @@ class MazeAlgo
 		return bfs(begX, begY, endX, endY, visited)
 	end
 
+	def go_through? cell_x, cell_y, di, visited
+		x = cell_x*2+1
+		y = cell_y*2+1
+		return @maze[x+@@D[di][0]][y+@@D[di][1]]=="0" && !visited[cell_x+@@D[di][0]][cell_y+@@D[di][1]]
+	end
+
 	def dfs begX, begY, endX, endY, visited
 		# check if there is a wall in four directions
 		visited[begX][begY] = true
 		return true if (begX==endX and begY==endY)
-		x = 2*begX+1
-		y = 2*begY+1
 		# search 4 directions
 		4.times do |i| 
-			if @maze[x+@@D[i][0]][y+@@D[i][1]]=="0" && !visited[begX+@@D[i][0]][begY+@@D[i][1]] && dfs(begX+@@D[i][0], begY+@@D[i][1], endX, endY, visited)
+			if go_through?(begX, begY, i, visited) && dfs(begX+@@D[i][0], begY+@@D[i][1], endX, endY, visited)
 				return true
 			end
 		end
@@ -49,21 +53,17 @@ class MazeAlgo
 		while head<list.size() 
 			break if list[head][0]==endX and list[head][1]==endY
 			# add the next possible cells into the list
-			x = 2*list[head][0]+1
-			y = 2*list[head][1]+1
 			4.times do |i|
-				nextX = list[head][0]+@@D[i][0]
-				nextY = list[head][1]+@@D[i][1]
-				if @maze[x+@@D[i][0]][y+@@D[i][1]]=="0" && !visited[nextX][nextY]
-					visited[nextX][nextY] =true
-					list.push [nextX, nextY]
+				if go_through?(list[head][0], list[head][1], i, visited)
+					visited[list[head][0]+@@D[i][0]][list[head][1]+@@D[i][1]] =true
+					list.push [list[head][0]+@@D[i][0], list[head][1]+@@D[i][1]]
 					last_cell.push head
 				end
 			end
 			head += 1
 		end
 		return "no path" if head>=list.size()
-		path = Array.new
+		path = []
 		while head!=-1
 			path.unshift list[head]
 			head = last_cell[head]

@@ -77,6 +77,11 @@ class Maze
 			end
 			i += 1
 		end
+		connet_walls
+		"New Maze has been formed."
+	end
+
+	def connet_walls
 		(@height_cell-1).times do |i|
 			(@width_cell-1).times do |j|
 				x = 2*i+2
@@ -87,6 +92,5 @@ class Maze
 				end
 			end
 		end
-		"New Maze has been formed."
 	end
 end
