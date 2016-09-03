@@ -1,0 +1,3 @@
+class Algorithms
+	
+end
