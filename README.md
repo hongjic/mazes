@@ -7,7 +7,12 @@
 Mazes:
 One of the most basic kinds of games that we can represent in software is a maze. A maze is defined as a rectangular grid (n by m) of cells. Each cell has between 1 and 3 walls. Also, the walls at the outside cells (along the top, left, right and bottom of the maze) are closed. A cell that has 4 walls is a dead end and one that has zero walls of course floats and has no impact.
 
-use ``ruby run.rb`` to start the program
+There's a text-based user interface, just type ``ruby run.rb`` in the directory to start the program.
+
+Test cases are done with Rspec, see ``spec/xx_spec.rb`` 
+
+At the bottom of this page there's a screen shot from the terminal.
+
 
 ###Commands
 
@@ -35,3 +40,6 @@ prints a diagram of the maze on the console.
 ***trace***
 
 ``trace(begX, begY, endX, endY)`` method that is just like ``solve()`` but traces the positions that the solution visits.
+
+
+![image](terminal_screenshot.png)
