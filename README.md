@@ -3,6 +3,7 @@
 [![Code Climate](https://codeclimate.com/github/hongjic/mazes/badges/gpa.svg)](https://codeclimate.com/github/hongjic/mazes)
 [![Issue Count](https://codeclimate.com/github/hongjic/mazes/badges/issue_count.svg)](https://codeclimate.com/github/hongjic/mazes)
 
+
 ###Description
 Mazes:
 One of the most basic kinds of games that we can represent in software is a maze. A maze is defined as a rectangular grid (n by m) of cells. Each cell has between 1 and 3 walls. Also, the walls at the outside cells (along the top, left, right and bottom of the maze) are closed. A cell that has 4 walls is a dead end and one that has zero walls of course floats and has no impact.

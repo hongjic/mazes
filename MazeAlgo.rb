@@ -1,6 +1,10 @@
 class MazeAlgo
 
-	@@D = [[-1,0],[1,0],[0,-1],[0,1]]
+	@d = [[-1,0],[1,0],[0,-1],[0,1]]
+
+	class<<self
+		attr_accessor :d
+	end
 
 	def initialize maze, h, w
 		@maze = maze
@@ -25,7 +29,7 @@ class MazeAlgo
 	def go_through? cell_x, cell_y, di, visited
 		x = cell_x*2+1
 		y = cell_y*2+1
-		return @maze[x+@@D[di][0]][y+@@D[di][1]]=="0" && !visited[cell_x+@@D[di][0]][cell_y+@@D[di][1]]
+		return @maze[x+MazeAlgo.d[di][0]][y+MazeAlgo.d[di][1]]=="0" && !visited[cell_x+MazeAlgo.d[di][0]][cell_y+MazeAlgo.d[di][1]]
 	end
 
 	def dfs begX, begY, endX, endY, visited
@@ -34,7 +38,7 @@ class MazeAlgo
 		return true if (begX==endX and begY==endY)
 		# search 4 directions
 		4.times do |i| 
-			if go_through?(begX, begY, i, visited) && dfs(begX+@@D[i][0], begY+@@D[i][1], endX, endY, visited)
+			if go_through?(begX, begY, i, visited) && dfs(begX+MazeAlgo.d[i][0], begY+MazeAlgo.d[i][1], endX, endY, visited)
 				return true
 			end
 		end
@@ -55,8 +59,8 @@ class MazeAlgo
 			# add the next possible cells into the list
 			4.times do |i|
 				if go_through?(list[head][0], list[head][1], i, visited)
-					visited[list[head][0]+@@D[i][0]][list[head][1]+@@D[i][1]] =true
-					list.push [list[head][0]+@@D[i][0], list[head][1]+@@D[i][1]]
+					visited[list[head][0]+MazeAlgo.d[i][0]][list[head][1]+MazeAlgo.d[i][1]] =true
+					list.push [list[head][0]+MazeAlgo.d[i][0], list[head][1]+MazeAlgo.d[i][1]]
 					last_cell.push head
 				end
 			end
